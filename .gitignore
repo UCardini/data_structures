@@ -4,7 +4,14 @@
 *.o
 *.out
 *.exe
+
+# Ignore compressed files
+*.zip
 *.tar.gz
+*.tar
+*.gz
+*.rar
+*.7z
 
 # Ignore lecture directories
 **/lec/
