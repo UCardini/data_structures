@@ -4,6 +4,7 @@
 *.o
 *.out
 *.exe
+*.tar.gz
 
 # Ignore lecture directories
 **/lec/
