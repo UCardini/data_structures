@@ -1,0 +1,9 @@
+# Ignore compiled files and directories
+/bin/
+/obj/
+*.o
+*.out
+*.exe
+
+# Ignore lecture directories
+**/lec/

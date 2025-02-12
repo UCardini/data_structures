@@ -1,0 +1,10 @@
+---
+Language: Cpp
+BasedOnStyle: LLVM
+IndentWidth: 4
+UseTab: Never
+BreakBeforeBraces: Allman
+AlignAfterOpenBracket: Align
+PointerAlignment: Left
+AccessModifierOffset: -4
+---
