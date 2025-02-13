@@ -1,10 +1,8 @@
-#include "../include/player.h"
-#include "../include/wheel.h"
+#include "player.h"
 
 int main()
 {
-    srand(time(0));
-    wheel roulett(25);
-    std::cout << roulett.spin() << std::endl;
+    player roulett( 10 );
+    std::cout << roulett.spinWheel() << std::endl;
     return 0;
 }

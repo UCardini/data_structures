@@ -1,26 +1,26 @@
-#include "../include/classDef.h"
+#include "classDef.h"
 // default constructer initializes member variables to 0 when used.
 units::units()
 {
     little = 0;
-    lot = 0;
-    heap = 0;
+    lot    = 0;
+    heap   = 0;
 }
 
 // this constructer is used when we want to define each member
-units::units(int little, int lot, int heap)
+units::units( int little, int lot, int heap )
 {
     this->little = little;
-    this->lot = lot;
-    this->heap = heap;
+    this->lot    = lot;
+    this->heap   = heap;
 }
 
 // this constructer is used when we want to give it just littles
-units::units(int little)
+units::units( int little )
 {
-    this->little = little % 7; // more than 7 little's is a lot
-    lot = (little / 7) % 23;   // more than 23 lot's is a heap
-    heap = little / (7 * 23);  // largest metric in skibidi sigma rizz units
+    this->little = little % 7;          // more than 7 little's is a lot
+    lot          = ( little / 7 ) % 23; // more than 23 lot's is a heap
+    heap = little / ( 7 * 23 ); // largest metric in skibidi sigma rizz units
 }
 
 /*   Name: getValue()
@@ -43,9 +43,9 @@ void units::getValue() // print member funtion
  * This function converts all units back
  * into littles.
  */
-int units::onlyLittle(int little, int lot, int heap)
+int units::onlyLittle( int little, int lot, int heap )
 {
-    little = (heap * 23 * 7) + (lot * 7) + little;
+    little = ( heap * 23 * 7 ) + ( lot * 7 ) + little;
     return little;
 }
 
@@ -59,7 +59,7 @@ int units::onlyLittle(int little, int lot, int heap)
  * We convert all sizes of our units into littles
  * then we return the output of that.
  */
-int units::toMeters() { return onlyLittle(little, lot, heap); }
+int units::toMeters() { return onlyLittle( little, lot, heap ); }
 
 /*   Name: reInitialize()
  *  Input: units newUnits
@@ -68,11 +68,11 @@ int units::toMeters() { return onlyLittle(little, lot, heap); }
  * This function changes the value of littles
  * lots and heaps to the value of the input
  */
-void units::reInitialize(units newUnits)
+void units::reInitialize( units newUnits )
 {
     little = newUnits.little;
-    lot = newUnits.lot;
-    heap = newUnits.heap;
+    lot    = newUnits.lot;
+    heap   = newUnits.heap;
 }
 
 /*   Name: resetUnits()
@@ -82,11 +82,11 @@ void units::reInitialize(units newUnits)
  * This function takes a value in littles and
  * coverts it into littles lots and heaps
  */
-void units::resetUnits(int little)
+void units::resetUnits( int little )
 {
-    this->little = little % 7; // more than 7 little's is a lot
-    lot = (little / 7) % 23;   // more than 23 lot's is a heap
-    heap = little / (7 * 23);  // largest metric in skibidi sigma rizz units
+    this->little = little % 7;          // more than 7 little's is a lot
+    lot          = ( little / 7 ) % 23; // more than 23 lot's is a heap
+    heap = little / ( 7 * 23 ); // largest metric in skibidi sigma rizz units
 }
 
 // getters
@@ -95,37 +95,37 @@ int units::getLot() { return lot; }
 int units::getHeap() { return heap; }
 
 // setters
-void units::setLittle(int little) { this->little = little; }
-void units::setLot(int lot) { this->lot = lot; }
-void units::setHeap(int heap) { this->heap = heap; }
+void units::setLittle( int little ) { this->little = little; }
+void units::setLot( int lot ) { this->lot = lot; }
+void units::setHeap( int heap ) { this->heap = heap; }
 
 // overloaded operators
 // Addition - We convert heaps and lots into littles and add it to
 // the right variable we then call a constructer to convert it back
 // into littles lots and heaps
-void units::operator+(units right)
+void units::operator+( units right )
 {
     little += right.little;
     lot += right.lot;
     heap += right.heap;
 
-    resetUnits(onlyLittle(little, lot, heap));
+    resetUnits( onlyLittle( little, lot, heap ) );
 }
 // Subtraction - We convert heaps and lots into littles and subtract
 // it by the right variable we then call a constructer to turn it back
 // into little lots and heaps
-void units::operator-(units right)
+void units::operator-( units right )
 {
     little -= right.little;
     lot -= right.lot;
     heap -= right.heap;
-    resetUnits(onlyLittle(little, lot, heap));
+    resetUnits( onlyLittle( little, lot, heap ) );
 }
 // Multiplication - We multiply left variable little lots and heaps
 // by the right little lots and heaps straight accross we the call
 // our constructer to create a new object so we dont desturb our
 // initial values
-void units::operator*(units right)
+void units::operator*( units right )
 {
     /* ASIDE
      * didn't know if i should multiply straight accross or by the
@@ -137,26 +137,26 @@ void units::operator*(units right)
     little *= right.little;
     lot *= right.lot;
     heap *= right.heap;
-    resetUnits(onlyLittle(little, lot, heap));
+    resetUnits( onlyLittle( little, lot, heap ) );
 }
 // Division - We turn left and right into littles check if its divided
 // by zero and return (-1337,-1337,-1337) if it is and left/right if it isn't
-void units::operator/(units right)
+void units::operator/( units right )
 {
-    int rightLittle = onlyLittle(right.little, right.lot, right.heap);
+    int rightLittle = onlyLittle( right.little, right.lot, right.heap );
 
-    if (rightLittle == 0)
+    if ( rightLittle == 0 )
     {
         std::cout << "\t---Error Divide by zero! (enter a value greater than "
                      "zero for y)---"
                   << std::endl;
         little = -1337;
-        lot = -1337;
-        heap = -1337; // leet value error
+        lot    = -1337;
+        heap   = -1337; // leet value error
     }
     else
     {
-        if (right.heap != 0)
+        if ( right.heap != 0 )
         {
             heap /= right.heap;
         }
@@ -164,7 +164,7 @@ void units::operator/(units right)
         {
             heap = 0;
         }
-        if (right.lot != 0)
+        if ( right.lot != 0 )
         {
             lot /= right.lot;
         }
@@ -172,7 +172,7 @@ void units::operator/(units right)
         {
             lot = 0;
         }
-        if (right.little != 0)
+        if ( right.little != 0 )
         {
             little /= right.little;
         }
@@ -182,15 +182,15 @@ void units::operator/(units right)
         }
     }
 
-    resetUnits(onlyLittle(little, lot, heap));
+    resetUnits( onlyLittle( little, lot, heap ) );
 }
 // Comparison - We convert left and right into littles and
 // see if theyre equal if they are return true else false
-bool units::operator==(units right)
+bool units::operator==( units right )
 {
-    int rightLittle = onlyLittle(right.little, right.lot, right.heap);
-    int leftLittle = onlyLittle(little, lot, heap);
-    if (rightLittle == leftLittle)
+    int rightLittle = onlyLittle( right.little, right.lot, right.heap );
+    int leftLittle  = onlyLittle( little, lot, heap );
+    if ( rightLittle == leftLittle )
     {
         return true;
     }
@@ -204,8 +204,8 @@ bool units::operator==(units right)
 // a string.
 units::operator std::string()
 {
-    std::string unitString = std::to_string(heap) + " heaps, " +
-                             std::to_string(lot) + " lots, and " +
-                             std::to_string(little) + " littles.";
+    std::string unitString = std::to_string( heap ) + " heaps, " +
+                             std::to_string( lot ) + " lots, and " +
+                             std::to_string( little ) + " littles.";
     return unitString;
 }
