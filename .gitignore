@@ -1,9 +1,18 @@
 # Ignore compiled files and directories
-/bin/
-/obj/
+bin/
+obj/
+.cache/
+
+main
 *.o
 *.out
 *.exe
+*.odt
+*.doc
+*.docx
+*.json
+
+.clang-format
 
 # Ignore compressed files
 *.zip
