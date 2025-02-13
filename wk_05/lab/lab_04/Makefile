@@ -37,5 +37,6 @@ $(OBJ)/%.o: src/%.cpp
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # Clean rule to remove generated files
+# Plz use <3
 clean:
 	rm -rf $(OBJ) $(BIN) $(TARGET) compile_commands.json .cache
