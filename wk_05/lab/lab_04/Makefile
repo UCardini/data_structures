@@ -1,37 +1,41 @@
-COMPILER = g++
-FLAGS = -Wall -g
+# Compiler and flags
+CXX = g++
+CXXFLAGS = -Wall -g -Iinclude
 
-# objDirectory:
-# binDirectory:
-	# @mkdir -p bin
-	# @mkdir -p obj
-OBJ:=obj
-BIN:=bin
+# Directories
+OBJ := obj
+BIN := bin
+
 # Source files
 SRCS = $(wildcard src/*.cpp)
-# Object files
-OBJS = $(patsubst src/%.cpp, obj/%.o, $(SRCS))
 
+# Object files
+OBJS = $(patsubst src/%.cpp, $(OBJ)/%.o, $(SRCS))
+
+compile_commands.json:
+	bear -- make all
+
+# Debug prints
+$(info SRCS = $(SRCS))
+$(info OBJS = $(OBJS))
+
+# Target executable
 TARGET = $(BIN)/main
 
 # Default rule to build and run the executable
-all: $(TARGET) run
+all: $(TARGET)
+	./$(TARGET)
 
 # Rule to link object files into the target executable
 $(TARGET): $(OBJS)
-	$(COMPILER) $(FLAGS) -o $(TARGET) $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
 # Rule to compile .cpp files into .o files
 $(OBJ)/%.o: src/%.cpp
-	mkdir -p $(@D)
-	mkdir -p $(BIN)
+	@mkdir -p $(OBJ)
+	@mkdir -p $(BIN)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
-
-# Rule to run the executable
-run: $(TARGET)
-	./$(TARGET)
 
 # Clean rule to remove generated files
 clean:
-	-rm -rf obj bin $(TARGET)
-
+	rm -rf $(OBJ) $(BIN) $(TARGET) compile_commands.json .cache

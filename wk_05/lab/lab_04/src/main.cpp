@@ -1,3 +1,9 @@
-#include "../include/classDef.h"
+#include <iostream>
+#include "TVShow.h"
 
-int main() { return 0; }
+
+
+int main()
+{
+	return 0;
+}
