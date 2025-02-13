@@ -3,6 +3,8 @@ bin/
 obj/
 .cache/
 
+main
+
 *.o
 *.out
 *.exe
