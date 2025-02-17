@@ -28,6 +28,6 @@ $(OBJ)/%.o: src/%.cpp
 	@mkdir -p $(BIN)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Plz use <3
+#  :Plz use <3
 clean:
 	rm -rf $(OBJ) $(BIN) $(TARGET) compile_commands.json .cache
