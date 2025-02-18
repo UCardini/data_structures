@@ -7,6 +7,7 @@ private:
     int rangeMax;
 
 public:
+    wheel() { rangeMax = 10; }
     wheel(int rangeMax) { this->rangeMax = rangeMax; };
 
     virtual int spin() // random int 1 - value

@@ -6,7 +6,10 @@ private:
     int money;
 
 public:
-    player(int, wheel);
+    player(int);
 
     int createAndSpin(int);
+
+    int getMoney();
+    void setMoney(int);
 };
