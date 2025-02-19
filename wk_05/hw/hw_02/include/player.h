@@ -8,8 +8,8 @@ private:
 public:
     player(int);
 
-    int createAndSpin(int);
+    int spin();
 
     int getMoney();
-    void setMoney(int);
+    void modifyBalance(bool, int);
 };

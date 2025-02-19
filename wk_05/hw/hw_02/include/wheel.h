@@ -12,7 +12,6 @@ public:
 
     virtual int spin() // random int 1 - value
     {
-        srand(time(0));
         int ball = rand() % (rangeMax) + 1;
         return ball;
     };

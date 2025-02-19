@@ -7,14 +7,13 @@ player::player(int rangeMax)
     rules = wheel(rangeMax);
 };
 
-int player::createAndSpin(int rangeMax)
-{
-    wheel rules(rangeMax);
-    this->rules = rules;
-
-    int ballValue = rules.spin();
-    return ballValue;
-}
+int player::spin() { return rules.spin(); }
 
 int player::getMoney() { return money; }
-void player::setMoney(int money) { this->money = money; }
+void player::modifyBalance(bool win, int money)
+{
+    if (win)
+        this->money += money;
+    else
+        this->money -= money;
+}
