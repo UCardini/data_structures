@@ -122,12 +122,21 @@ int main()
             }
             else if (betModify == 3)
             {
-                playerBet *= 2;
-                // house gets 2 spins to try and beat your number
-                // only 1 needs to beat yours to win
-                win = p.spin() < ball && p.spin() < ball;
-                p.modifyBalance(win, playerBet);
-                break;
+                if (p.getMoney() - playerBet < playerBet)
+                {
+                    win = p.spin() < ball && p.spin() < ball;
+                    p.modifyBalance(win, playerBet);
+                    break;
+                }
+                else
+                {
+                    playerBet *= 2;
+                    // house gets 2 spins to try and beat your number
+                    // only 1 needs to beat yours to win
+                    win = p.spin() < ball && p.spin() < ball;
+                    p.modifyBalance(win, playerBet);
+                    break;
+                }
             }
             else
             {

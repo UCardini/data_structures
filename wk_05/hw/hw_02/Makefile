@@ -6,36 +6,32 @@ CXXFLAGS = -Wall -g -Iinclude
 OBJ := obj
 BIN := bin
 
-# Source files
+# source files
 SRCS = $(wildcard src/*.cpp)
-
-# Object files
 OBJS = $(patsubst src/%.cpp, $(OBJ)/%.o, $(SRCS))
 
-compile_commands.json:
-	bear -- make all
+#$(info SRCS = $(SRCS))
+#$(info OBJS = $(OBJS))
 
-# Debug prints
-$(info SRCS = $(SRCS))
-$(info OBJS = $(OBJS))
-
-# Target executable
+# main function
 TARGET = $(BIN)/main
 
-# Default rule to build and run the executable
-all: $(TARGET)
-	./$(TARGET)
 
-# Rule to link object files into the target executable
+all: $(TARGET) run
+
+# rule to link object files into the target executable
 $(TARGET): $(OBJS)
 	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to compile .cpp files into .o files
+# rule to compile .cpp files into .o files
 $(OBJ)/%.o: src/%.cpp
 	@mkdir -p $(OBJ)
 	@mkdir -p $(BIN)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Clean rule to remove generated files
+run: $(TARGET)
+	bear -- $(TARGET)
+	#./$(TARGET)
+
 clean:
 	rm -rf $(OBJ) $(BIN) $(TARGET) compile_commands.json .cache
