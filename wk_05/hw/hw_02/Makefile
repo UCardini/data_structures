@@ -1,36 +1,35 @@
-# Compiler and flags
 CXX = g++
 CXXFLAGS = -Wall -g -Iinclude
 
-# Directories
 OBJ := obj
 BIN := bin
+SRC := src
 
-# source files
-SRCS = $(wildcard src/*.cpp)
-OBJS = $(patsubst src/%.cpp, $(OBJ)/%.o, $(SRCS))
+SRCS = $(wildcard $(SRC)/*.cpp)
+OBJS = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 
-#$(info SRCS = $(SRCS))
-#$(info OBJS = $(OBJS))
-
-# main function
 TARGET = $(BIN)/main
 
-all: $(TARGET) 
-	./$(TARGET)
+all: $(TARGET)
+	@./$(TARGET)
 
-# rule to link object files into the target executable
 $(TARGET): $(OBJS)
-	$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
-
-# rule to compile .cpp files into .o files
-$(OBJ)/%.o: src/%.cpp
-	@mkdir -p $(OBJ)
 	@mkdir -p $(BIN)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-find: $(TARGET)
-	bear -- make all
+$(OBJ)/%.o: $(SRC)/%.cpp
+	@mkdir -p $(OBJ)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
+
+# for clangd - if you use anything else go fuck yourself
+compile_commands:
+	@if [ ! -f compile_commands.json ]; then \
+		@bear -- make clean all; \
+	fi
 
 clean:
-	rm -rf $(OBJ) $(BIN) $(TARGET) 
+	@rm -rf $(OBJ) $(BIN) compile_commands.json
+
+rebuild: clean all
+
+.PHONY: all clean rebuild compile_commands
