@@ -1,30 +1,35 @@
-COMPILER = g++
-FLAGS = -Wall -g
+CXX = g++
+CXXFLAGS = -Wall -g -Iinclude
 
-# Source files
-SRCS = $(wildcard src/*.cpp)
+OBJ := obj
+BIN := bin
+SRC := src
 
-# Object files
-OBJS = $(patsubst src/%.cpp, obj/%.o, $(SRCS))
+SRCS = $(wildcard $(SRC)/*.cpp)
+OBJS = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 
-TARGET = bin/main
+TARGET = $(BIN)/main
 
-# Default rule to build and run the executable
-all: $(TARGET) run
+all: $(TARGET)
+	@./$(TARGET)
 
-# Rule to link object files into the target executable
 $(TARGET): $(OBJS)
-	$(COMPILER) $(FLAGS) -o $(TARGET) $(OBJS)
+	@mkdir -p $(BIN)
+	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
-# Rule to compile .cpp files into .o files
-obj/%.o: src/%.cpp
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ)/%.o: $(SRC)/%.cpp
+	@mkdir -p $(OBJ)
+	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# Rule to run the executable
-run: $(TARGET)
-	./$(TARGET)
+# for clangd 
+compile_commands:
+	@if [ ! -f compile_commands.json ]; then \
+		bear -- make clean all; \
+	fi
 
-# Clean rule to remove generated files
 clean:
-	-rm -f obj/*.o $(TARGET)
+	@rm -rf $(OBJ) $(BIN) compile_commands.json
 
+rebuild: clean all
+
+.PHONY: all clean rebuild compile_commands

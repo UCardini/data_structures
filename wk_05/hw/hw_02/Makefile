@@ -21,7 +21,7 @@ $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(OBJ)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# for clangd - if you use anything else go fuck yourself
+# for clangd
 compile_commands:
 	@if [ ! -f compile_commands.json ]; then \
 		bear -- make clean all; \
