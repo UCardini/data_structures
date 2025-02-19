@@ -12,6 +12,18 @@ Movie CreateMovie();
 
 int main()
 {
+	switch(DisplayOptions())
+	{
+		case 1:
+			Show show = CreateShow();
+			break;
+		case 2:
+			Movie movie = CreateMovie();
+			break;
+		case 3:
+			TVShow tv_show = CreateTVShow();
+			break;
+
 	return 0;
 }
 
@@ -65,8 +77,8 @@ TVShow CreateTVShow()
 		{9, "4 Days Out - Walt and Jesse get stranded in the desert."},
 		{10, "Over - Walt tries to assert control over his life."},
 		{11, "Mandala - Jane introduces Jesse to heroin."},
-		{12, "Phoenix - Walt misses his daughter’s birth."},
-		{13, "ABQ - A tragic event unfolds due to Jane’s death."}
+		{12, "Phoenix - Walt misses his daughterâ€™s birth."},
+		{13, "ABQ - A tragic event unfolds due to Janeâ€™s death."}
 		});
 
 	return { "Breaking Bad", "Descritpion", show };
