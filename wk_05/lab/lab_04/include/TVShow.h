@@ -1,19 +1,19 @@
 #pragma once
-#include "Episode.h"
 #include "Show.h"
+#include "Episode.h"
 #include <vector>
 
 using std::vector;
 
-class TVShow : protected Show
+
+class TVShow : public Show
 {
-protected:
-    vector<vector<Episode>> Show_Content = { { { 1, "Summary" } } };
+private:
+	vector <vector<Episode>> Show_Content;
 
 public:
-    void Play() override;
+	TVShow(string, string, vector<vector<Episode>>);
 
-    using Show::Details;
-
-    void Details();
+	void Play() override;
+	void Details();
 };

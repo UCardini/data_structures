@@ -3,8 +3,9 @@
 
 using std::string;
 
+
 struct Episode
 {
-    int Episode_Number;
-    string Summary;
+	int Episode_Number;
+	string Summary;
 };

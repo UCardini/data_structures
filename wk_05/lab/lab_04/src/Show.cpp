@@ -39,6 +39,12 @@ string Show::getDescription()
 }
 
 
+void Show::Play()
+{
+	cout << "Playing: " << Title;
+}
+
+
 void Show::Details()
 {
 	cout << "Title: " << Title << endl;

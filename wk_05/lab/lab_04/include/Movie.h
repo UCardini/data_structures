@@ -1,15 +1,18 @@
 #pragma once
 #include "Show.h"
 
-class Movie : protected Show
+
+class Movie : public Show
 {
-protected:
-    string AgeRating;
+private:
+	string AgeRating;
 
 public:
-    void setAgeRating( string );
+	Movie(string, string, string);
 
-    string getAgeRating();
+	void setAgeRating(string);
 
-    void Play() override;
+	string getAgeRating();
+
+	void Play() override;
 };

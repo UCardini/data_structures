@@ -1,6 +1,11 @@
 #include "TVShow.h"
 
 
+TVShow::TVShow(string title, string description, vector<vector<Episode>> content) : Show(title, description)
+{
+	Show_Content = content;
+}
+
 
 void TVShow::Play()
 {
