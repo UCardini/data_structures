@@ -24,7 +24,7 @@ $(OBJ)/%.o: $(SRC)/%.cpp
 # for clangd - if you use anything else go fuck yourself
 compile_commands:
 	@if [ ! -f compile_commands.json ]; then \
-		@bear -- make clean all; \
+		bear -- make clean all; \
 	fi
 
 clean:
