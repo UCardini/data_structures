@@ -1,25 +1,43 @@
 #include "shelf.h"
-#include "movie.h"
+#include "exception.h"
 
 shelf::shelf()
 {
-    index           = 1;
-    movies[ index ] = movie();
+    // movies[ nextMovie ] = movie();
+
+    nextMovie = 0;
 };
 
 void shelf::shelfAdd( movie movies )
 {
     // Check the index
-    if ( index <= 10 )
+    if ( 2 <= nextMovie )
     {
-        this->movies[ index ] = movies;
+
+        // std::cerr << "Exception FullShelf hit" << std::endl;
+        throw fullShelf( "Shelf is full", this->movies, 2, movies );
     }
-    index++;
-}
-movie shelf::shelfRemove()
-{
-    index--;
-    return movies[ index ];
+    else
+    {
+        // std::cerr << "Exception not hit" << std::endl;
+        this->movies[ nextMovie ] = movies;
+        nextMovie++;
+    }
 }
 
-int shelf::getIndex() { return index - 1; }
+movie shelf::shelfRemove()
+{
+    if ( nextMovie <= 0 )
+    {
+        // std::cerr << "Exception EmptyShelf hit" << std::endl;
+        throw emptyShelf( "Shelf is empty" );
+    }
+    else
+    {
+        // std::cerr << "Exception not hit" << std::endl;
+        nextMovie--;
+        return movies[ nextMovie ];
+    }
+}
+
+int shelf::getIndex() { return nextMovie; }

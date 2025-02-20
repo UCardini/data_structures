@@ -1,5 +1,5 @@
-CXX = g++
-CXXFLAGS = -Wall -g -Iinclude
+CXX = clang++
+CXXFLAGS = --debug -Wall -g -Iinclude
 
 OBJ := obj
 BIN := bin
@@ -17,12 +17,13 @@ $(TARGET): $(OBJS)
 	@mkdir -p $(BIN)
 	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
+
 $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(OBJ)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
 # for clangd
-compile_commands:
+clang:
 	@if [ ! -f compile_commands.json ]; then \
 		bear -- make clean all; \
 	fi
