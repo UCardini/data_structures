@@ -25,17 +25,3 @@ public:
     std::string msg;
     emptyShelf( std::string msg ) { this->msg = msg; };
 };
-
-class doubleWhenIntExpected
-{
-public:
-    double d;
-
-    doubleWhenIntExpected( double d ) { this->d = d; };
-};
-class charWhenIntExpected
-{
-    char c;
-
-    charWhenIntExpected( char c ) { this->c = c; };
-};

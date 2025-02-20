@@ -4,18 +4,17 @@
 shelf::shelf()
 {
     // movies[ nextMovie ] = movie();
-
     nextMovie = 0;
 };
 
 void shelf::shelfAdd( movie movies )
 {
     // Check the index
-    if ( 2 <= nextMovie )
+    if ( shelfSize <= nextMovie )
     {
 
         // std::cerr << "Exception FullShelf hit" << std::endl;
-        throw fullShelf( "Shelf is full", this->movies, 2, movies );
+        throw fullShelf( "Shelf is full", this->movies, shelfSize, movies );
     }
     else
     {

@@ -31,7 +31,7 @@ int main()
         std::cout << "\t\tType your selection: ";
         std::cin >> entry;
         if ( std::cin.fail() )
-        {
+        { // this line is needed to make sure cin recieves an integer
             std::cin.clear();
             std::cin.ignore( std::numeric_limits<std::streamsize>::max(),
                              '\n' );
@@ -65,7 +65,7 @@ int main()
             }
             catch ( fullShelf e )
             {
-                std::cerr << "[Exception caught: " << e.msg << "] - ";
+                std::cerr << "[Exception caught: " << e.msg << "]" << std::endl;
                 std::cerr
                     << title
                     << " not added, remove a movie to add another to shelf!"

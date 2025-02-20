@@ -8,6 +8,7 @@ private:
     int nextMovie;
 
 public:
+    static const int shelfSize = 1;
     shelf();
 
     void shelfAdd( movie );
