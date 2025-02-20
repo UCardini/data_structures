@@ -1,23 +1,17 @@
 #pragma once
+#include "movie.h"
 #include <iostream>
 
 class shelf
 {
 private:
-    movie movies[10];
+    movie movies[ 10 ];
     int index;
 
 public:
-    shelf()
-    {
-        index = 0;
-        movies[index] = movie();
-    };
+    shelf();
 
-    void shelfAdd(movie movies) { this->movies[index + 1] = movies; };
-    movie shelfRemove(int)
-    {
-        index--;
-        return movie();
-    };
+    void shelfAdd( movie );
+    movie shelfRemove();
+    int getIndex();
 };
