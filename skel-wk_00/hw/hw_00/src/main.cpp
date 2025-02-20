@@ -1,3 +1,3 @@
-#include "../include/classDef.h"
+#include "classDef.h"
 
 int main() { return 0; }
