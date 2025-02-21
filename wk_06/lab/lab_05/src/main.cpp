@@ -55,8 +55,8 @@ int main()
             std::cout << "Enter the Age Rating: ";
             std::cin >> ageRating;
             std::cout << std::endl;
-
-            movie* p = new movie( title, description, ageRating ); // new operator
+            // new operator
+            movie* p = new movie( title, description, ageRating );
             try
             {
                 s.shelfAdd( p );
@@ -80,7 +80,7 @@ int main()
             {
                 movie* p = s.shelfRemove();
                 std::cout << "\tRemoved from Collection!" << std::endl;
-                p->printMovie(); 
+                p->printMovie();
             }
             catch ( emptyShelf e )
             {
