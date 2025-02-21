@@ -33,4 +33,4 @@ clean:
 
 rebuild: clean all
 
-.PHONY: all clean rebuild compile_commands
+.PHONY: all clean rebuild clang
