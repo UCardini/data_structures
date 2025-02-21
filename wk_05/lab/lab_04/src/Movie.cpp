@@ -21,5 +21,5 @@ string Movie::getAgeRating()
 
 void Movie::Play()
 {
-	cout << "Age Rating: " << AgeRating;
+	cout << "Age Rating: " << AgeRating << endl;
 }

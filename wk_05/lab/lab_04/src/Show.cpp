@@ -41,12 +41,12 @@ string Show::getDescription()
 
 void Show::Play()
 {
-	cout << "Playing: " << Title;
+	cout << "Playing: " << Title << endl;
 }
 
 
 void Show::Details()
 {
 	cout << "Title: " << Title << endl;
-	cout << "Description:" << endl << Description;
+	cout << "Description:" << endl << Description << endl;
 }
