@@ -56,12 +56,12 @@ int main()
             std::cin >> ageRating;
             std::cout << std::endl;
 
-            movie p( title, description, ageRating );
+            movie* p = new movie( title, description, ageRating ); // new operator
             try
             {
                 s.shelfAdd( p );
                 std::cout << "\tAdded to Collection!" << std::endl;
-                p.printMovie();
+                p->printMovie();
             }
             catch ( fullShelf e )
             {
@@ -78,9 +78,9 @@ int main()
         {
             try
             {
-                movie p = s.shelfRemove();
+                movie* p = s.shelfRemove();
                 std::cout << "\tRemoved from Collection!" << std::endl;
-                p.printMovie();
+                p->printMovie(); 
             }
             catch ( emptyShelf e )
             {
