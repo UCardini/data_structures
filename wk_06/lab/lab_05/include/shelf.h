@@ -3,12 +3,11 @@
 
 class shelf
 {
-private:
-    movie movies[ 2 ];
-    int nextMovie;
-
 public:
     static const int shelfSize = 1;
+    movie movies[ shelfSize ];
+    int nextMovie;
+
     shelf();
 
     void shelfAdd( movie );
