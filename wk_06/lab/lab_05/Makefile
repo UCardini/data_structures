@@ -10,6 +10,13 @@ OBJS = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 
 TARGET = $(BIN)/main
 
+# for clangd
+clang:
+	@if [ ! -f compile_commands.json ]; then \
+		bear -- make clean all; \
+	fi
+	@make all
+
 all: $(TARGET)
 	@./$(TARGET)
 
@@ -22,15 +29,9 @@ $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(OBJ)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# for clangd
-clang:
-	@if [ ! -f compile_commands.json ]; then \
-		bear -- make clean all; \
-	fi
-
 clean:
-	@rm -rf $(OBJ) $(BIN) compile_commands.json
+	@rm -rf $(OBJ) $(BIN) compile_commands.json .cache
 
 rebuild: clean all
 
-.PHONY: all clean rebuild compile_commands
+.PHONY: all clean rebuild clang
