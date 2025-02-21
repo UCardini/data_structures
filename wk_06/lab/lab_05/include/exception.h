@@ -7,14 +7,12 @@ class fullShelf
 public:
     std::string msg;
     int maxMovies;
-    movie* onShelf;
-    movie overFlow;
+    movie* overFlow;
 
-    fullShelf( std::string msg, movie* onShelf, int maxMovies, movie overFlow )
+    fullShelf( std::string msg, int maxMovies, movie* overFlow )
     {
         this->msg       = msg;
         this->maxMovies = maxMovies;
-        this->onShelf   = onShelf;
         this->overFlow  = overFlow;
     };
 };
