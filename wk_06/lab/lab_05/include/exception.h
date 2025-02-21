@@ -25,4 +25,3 @@ public:
     std::string msg;
     emptyShelf( std::string msg ) { this->msg = msg; };
 };
-
