@@ -82,11 +82,13 @@ int main()
                 {
                     movie* p = movieShelf.shelfRemove();
                     p->printMovie();
+                    delete p;
                 }
                 else
                 {
                     videoGame* p = gameShelf.shelfRemove();
                     p->printGame();
+                    delete p;
                 }
                 std::cout << "\tRemoved from Collection!" << std::endl;
             }
