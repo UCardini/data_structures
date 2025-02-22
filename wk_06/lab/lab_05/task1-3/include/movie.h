@@ -23,18 +23,6 @@ public:
         this->ageRating   = ageRating;
     };
 
-    std::string getTitle() { return title; };
-    void setTitle( std::string title ) { this->title = title; }
-
-    std::string getDescription() { return description; };
-    void setDescription( std::string description )
-    {
-        this->description = description;
-    };
-
-    std::string getAgeRating() { return ageRating; };
-    void setAgeRating( std::string ageRating ) { this->ageRating = ageRating; };
-
     void printMovie()
     {
         std::cout << "Title: " << title << " - Description: " << description
