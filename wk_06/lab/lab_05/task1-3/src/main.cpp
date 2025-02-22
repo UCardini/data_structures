@@ -81,6 +81,7 @@ int main()
                 movie* p = s.shelfRemove();
                 std::cout << "\tRemoved from Collection!" << std::endl;
                 p->printMovie(); 
+                delete p;
             }
             catch ( emptyShelf e )
             {

@@ -25,6 +25,7 @@ void shelf::shelfAdd( movie* movies )
     {
 
         // std::cerr << "Exception FullShelf hit" << std::endl;
+        delete movies;
         throw fullShelf( "Shelf is full", shelfSize  );
     }
     else
