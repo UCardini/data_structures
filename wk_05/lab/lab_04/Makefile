@@ -1,5 +1,5 @@
-CXX = g++
-CXXFLAGS = -Wall -g -Iinclude
+CXX = clang++
+CXXFLAGS = --debug -Wall -g -Iinclude
 
 OBJ := obj
 BIN := bin
@@ -10,6 +10,13 @@ OBJS = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 
 TARGET = $(BIN)/main
 
+# for clangd
+clang:
+	@if [ ! -f compile_commands.json ]; then \
+		bear -- make clean all; \
+	fi
+	@make all
+
 all: $(TARGET)
 	@./$(TARGET)
 
@@ -17,19 +24,14 @@ $(TARGET): $(OBJS)
 	@mkdir -p $(BIN)
 	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
 
+
 $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(OBJ)
 	@$(CXX) $(CXXFLAGS) -c $< -o $@
 
-# for clangd
-compile_commands:
-	@if [ ! -f compile_commands.json ]; then \
-		bear -- make clean all; \
-	fi
-
 clean:
-	@rm -rf $(OBJ) $(BIN) compile_commands.json
+	@rm -rf $(OBJ) $(BIN) compile_commands.json .cache
 
 rebuild: clean all
 
-.PHONY: all clean rebuild compile_commands
+.PHONY: all clean rebuild clang
