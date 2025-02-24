@@ -1,5 +1,4 @@
 #pragma once
-#include "movie.h"
 #include <string>
 
 class fullShelf
@@ -7,13 +6,11 @@ class fullShelf
 public:
     std::string msg;
     int maxMovies;
-    movie* overFlow;
 
-    fullShelf( std::string msg, int maxMovies, movie* overFlow )
+    fullShelf( std::string msg, int maxMovies)
     {
         this->msg       = msg;
         this->maxMovies = maxMovies;
-        this->overFlow  = overFlow;
     };
 };
 

@@ -1,7 +1,7 @@
 # Ignore compiled files and directories
-bin/
-obj/
-.cache/
+# bin/
+# obj/
+# .cache/
 
 main
 
@@ -24,4 +24,7 @@ main
 *.7z
 
 # Ignore lecture directories
-**/lec/
+#**/lec/
+**/bin/
+**/obj/
+**/.cache/
