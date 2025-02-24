@@ -25,6 +25,7 @@ main
 
 # Ignore lecture directories
 #**/lec/
+**/tmp/
 **/bin/
 **/obj/
 **/.cache/
