@@ -24,7 +24,7 @@ main
 *.7z
 
 # Ignore lecture directories
-#**/lec/
+**/lec/
 **/tmp/
 **/bin/
 **/obj/
