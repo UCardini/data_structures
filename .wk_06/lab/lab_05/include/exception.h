@@ -17,13 +17,8 @@ class fullShelf
 {
 public:
     std::string msg;
-    int maxItems;
 
-    fullShelf( std::string msg, int maxItems )
-    {
-        this->msg      = msg;
-        this->maxItems = maxItems;
-    };
+    fullShelf( std::string msg ) { this->msg = msg; };
 };
 
 /* Class Name: emptyShelf

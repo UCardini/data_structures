@@ -11,12 +11,6 @@ OBJS = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 TARGET = $(BIN)/main
 
 # for clangd
-clang:
-	@if [ ! -f compile_commands.json ]; then \
-		bear -- make clean all; \
-	fi
-	@make all
-
 all: $(TARGET)
 	@./$(TARGET)
 

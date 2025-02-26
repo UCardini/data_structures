@@ -28,7 +28,7 @@ public:
         if ( shelfSize <= nextItem )
         { // Throws fullShelf exception
             delete item;
-            throw fullShelf( "Shelf is full", shelfSize );
+            throw fullShelf( "Shelf is full" );
         }
         else
         { // Adds new item to the stack if it fits

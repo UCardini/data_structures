@@ -246,7 +246,7 @@ int mediaPrompt( bool isMovie )
         afterSpaces  = "";
     }
     std::cout
-        << "____________________________________________________________"
+        << "_____________________________________________________________"
         << std::endl
         << "|[Press 1] - to add a " << mediaType << " to the shelf." << spaces
         << "               |" << std::endl
