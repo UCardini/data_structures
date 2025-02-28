@@ -58,11 +58,8 @@ public:
         {
             // throw stackUnderflow();
         }
-        else
-        {
-            nextItem--;
-            return items[ nextItem ];
-        }
+        nextItem--;
+        return items[ nextItem ];
     };
 
     /**
@@ -113,7 +110,7 @@ public:
             delete items[ nextItem ];
             nextItem--;
         }
-    }
+    };
 };
 
 template <typename T> class queue
