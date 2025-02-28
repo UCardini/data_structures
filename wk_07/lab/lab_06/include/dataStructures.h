@@ -3,19 +3,21 @@
 
 template <typename T> class stack
 {
+public:
+    stack();
+    stack( int );
+    stack( stack&& )                 = default;
+    stack( const stack& )            = default;
+    stack& operator=( stack&& )      = default;
+    stack& operator=( const stack& ) = default;
+    ~stack();
+
 private:
     int size;
     int nextItem;
     T** items;
 
 public:
-    stack<T>( int size )
-    {
-        this->size     = size;
-        this->items    = &items[ size ];
-        this->nextItem = 0;
-    };
-
     /**
      * push
      * @brief Places pointer on the top of the stack
@@ -118,21 +120,22 @@ public:
 
 template <typename T> class queue
 {
+public:
+    queue();
+    queue( int );
+    queue( queue&& )                 = default;
+    queue( const queue& )            = default;
+    queue& operator=( queue&& )      = default;
+    queue& operator=( const queue& ) = default;
+    ~queue();
+
 private:
-    int capacity = 0;
-    int tail     = 0;
-    int head     = 0;
+    int capacity;
+    int tail;
+    int head;
     T** items;
 
 public:
-    queue<T>( int capacity )
-    {
-        this->capacity = capacity;
-        this->items    = &items[ capacity ];
-        // this->head  = 0;
-        // this->tail  = 0;
-    };
-
     /**
      * isEmpty
      * @brief Checks if the queue is empty
@@ -270,3 +273,22 @@ public:
         }
     };
 };
+
+template <typename T> stack<T>::stack( int size )
+{
+    this->size     = size;
+    this->items    = &items[ size ];
+    this->nextItem = 0;
+};
+
+template <typename T> stack<T>::~stack(){};
+
+template <typename T> queue<T>::queue( int capacity )
+{
+    this->capacity = capacity;
+    this->items    = &items[ capacity ];
+    this->head     = 0;
+    this->tail     = 0;
+};
+
+template <typename T> queue<T>::~queue(){};
