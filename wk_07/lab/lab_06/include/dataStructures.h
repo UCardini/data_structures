@@ -18,14 +18,14 @@ public:
 
     /**
      * push
-     * @breif Places pointer on the top of the stack
+     * @brief Places pointer on the top of the stack
      * @param Pointer to item to put into the stack
      *
      * @verbose
      * This function checks if the array is exceeded by next item where it
      * throws a stackOverflow exception. If the stack isn't full it'll add the
-     * item to the items array at the index nextItem then it increments nextItem
-     * (index in array).
+     * input value to the items array at the index nextItem then it increments
+     * nextItem (index in array).
      */
     void push( T* inVal )
     {
@@ -44,7 +44,7 @@ public:
 
     /**
      * pop
-     * @breif Remove and return last added item pointer
+     * @brief Remove and return last added item pointer
      * @return Pointer to item that was removed
      *
      * @verbose
@@ -67,7 +67,7 @@ public:
 
     /**
      * top
-     * @breif Returns item pointer on top of the stack
+     * @brief Returns item pointer on top of the stack
      * @return Most recent entry into the stack
      *
      * @verbose
@@ -89,8 +89,8 @@ public:
 
     /**
      * length
-     * @breif: Returns the length of the stack as an integer
-     * @return: Length of the stack
+     * @brief Returns the length of the stack as an integer
+     * @return Length of the stack
      *
      * @verbose
      * This function returns size of the array.
@@ -99,7 +99,7 @@ public:
 
     /**
      * empty
-     * @breif Delete all pointers in items array
+     * @brief Delete all pointers in items array
      *
      * @verbose
      * This function while the items array isn't equal to 0 itterates and
@@ -135,7 +135,7 @@ public:
 
     /**
      * isEmpty
-     * @breif Checks if the queue is empty
+     * @brief Checks if the queue is empty
      * @return true when empty, false when items still in queue
      *
      * @verbose
@@ -147,7 +147,7 @@ public:
 
     /**
      * isFull
-     * @breif Check if queue is full
+     * @brief Check if queue is full
      * @return true when full, false when not full
      *
      * @verbose
@@ -159,14 +159,15 @@ public:
 
     /**
      * enqueue
-     * @breif Places pointer at the tail (relative last) position index of the
+     * @brief Places pointer at the tail (relative last) position index of the
      * array
      * @param Pointer to item you're putting into the queue
      *
      * @verbose
      * This function checks if the array is full where it throws a queueOverflow
-     * exception. If the queue isn't full it'll increment the tail (relative
-     * last) position in the array and return it's pointer.
+     * exception and deletes the input value. If the queue isn't full it'll
+     * increment the tail (relative last) position in the array set the items
+     * array at the tail position equal to the input value.
      */
     void enqueue( T* inVal )
     {
@@ -230,15 +231,15 @@ public:
 
     /**
      * size
-     * @breif: Returns size of the items array as an int
-     * @return: Size of the queue
+     * @brief Returns size of the items array as an int
+     * @return Size of the queue
      *
      * @verbose
      * This function takes the 2 cases for the circular queue. The first case
      * when the tail is less or equal too the tail, where it finds and returns
      * the difference of tail and head. The second case when the tail is less
      * than the head, where it finds the difference of the capacity of the array
-     * and the sums the relative positions of head and tail
+     * and the sums the relative positions of head and tail.
      */
     int size()
     {
@@ -254,7 +255,7 @@ public:
 
     /**
      * empty
-     * @breif Delete all pointers in the items array
+     * @brief Delete all pointers in the items array
      *
      * @verbose
      * This function while the items array isn't empty itterates and deletes the
