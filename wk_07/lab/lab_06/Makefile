@@ -1,5 +1,5 @@
 CXX = clang++
-CXXFLAGS = --debug -Wall -g -Iinclude
+CXXFLAGS = -Wall -g -Iinclude
 
 OBJ := obj
 BIN := bin

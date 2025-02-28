@@ -12,6 +12,7 @@ main
 *.doc
 *.docx
 *.json
+*.log
 
 .clang-format
 
