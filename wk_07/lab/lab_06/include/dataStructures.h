@@ -1,10 +1,18 @@
 #pragma once
-#include <iostream>
+#include "exception.h"
 
 template <typename T> class stack
 {
-public: // overloaded
+public:
+    // constructor
     stack( int );
+
+    // functions
+    void push( T* inVal );
+    T* pop();
+    T* top();
+    int length();
+    void empty();
 
 private:
     int size;
@@ -18,116 +26,22 @@ public: // defaults
     stack& operator=( stack&& )      = default;
     stack& operator=( const stack& ) = default;
     ~stack();
-
-<<<<<<< HEAD
-    /**
-     * push
-     * @brief Places pointer on the top of the stack
-     * @param Pointer to item to put into the stack
-     *
-     * @verbose
-     * This function checks if the array is exceeded by next item where it
-     * throws a stackOverflow exception. If the stack isn't full it'll add the
-     * input value to the items array at the index nextItem then it increments
-     * nextItem (index in array).
-     */
-    void push( T* inVal )
-    {
-        if ( size <= nextItem )
-        {
-            delete inVal;
-            std::cout << "HIT" << std::endl;
-            // throw stackOverflow();
-        }
-        else
-        {
-            items[ nextItem ] = inVal;
-            nextItem++;
-        }
-    };
-
-    /**
-     * pop
-     * @brief Remove and return last added item pointer
-     * @return Pointer to item that was removed
-     *
-     * @verbose
-     * This function checks the top of the stack to see if it's equal to 0 where
-     * it'll throw a stackUnderflow exception. If it isn't equal to 0 it'll
-     * decrement the top position return the item to the user.
-     */
-    T* pop()
-    {
-        if ( nextItem <= 0 )
-        {
-            // throw stackUnderflow();
-        }
-        nextItem--;
-        return items[ nextItem ];
-    };
-
-    /**
-     * top
-     * @brief Returns item pointer on top of the stack
-     * @return Most recent entry into the stack
-     *
-     * @verbose
-     * This function checks if the stack is equal to 0 where it'll throw a
-     * stackUnderflow exception. If it isn't equal to 0 it'll return the top
-     * item pointer.
-     */
-    T* top()
-    {
-        if ( nextItem <= 0 )
-        {
-            // throw stackUnderflow();
-        }
-        else
-        {
-            return items[ nextItem - 1 ];
-        }
-    };
-
-    /**
-     * length
-     * @brief Returns the length of the stack as an integer
-     * @return Length of the stack
-     *
-     * @verbose
-     * This function returns size of the array.
-     */
-    int length() { return nextItem; };
-
-    /**
-     * empty
-     * @brief Delete all pointers in items array
-     *
-     * @verbose
-     * This function while the items array isn't equal to 0 itterates and
-     * deletes the pointers in the nextItem positions of the array and
-     * decrements nextItem until theres no items in the array.
-     */
-    void empty()
-    {
-        while ( 0 <= nextItem )
-        {
-            delete items[ nextItem ];
-            nextItem--;
-        }
-    };
-=======
-    void push( T* inVal );
-    T* pop();
-    T* top();
-    int length();
-    void empty();
->>>>>>> ab4b0827f3a781d417c73384473b21d9c9ac087d
 };
 
 template <typename T> class queue
 {
-public: // overloaded
+public:
+    // constructor
     queue( int );
+
+    // functions
+    bool isEmpty();
+    bool isFull();
+    void enqueue( T* );
+    T* dequeue();
+    T* peek();
+    int size();
+    void empty();
 
 private:
     int capacity;
@@ -142,25 +56,15 @@ public: // defaults
     queue& operator=( queue&& )      = default;
     queue& operator=( const queue& ) = default;
     ~queue();
-
-    bool isEmpty();
-    bool isFull();
-    void enqueue( T* );
-    T* dequeue();
-    T* peek();
-    int size();
-    void empty();
 };
 
+// overloaded constructors
 template <typename T> stack<T>::stack( int size )
 {
     this->size     = size;
     this->items    = &items[ size ];
     this->nextItem = 0;
 }
-
-template <typename T> stack<T>::~stack() {}
-
 template <typename T> queue<T>::queue( int capacity )
 {
     this->capacity = capacity;
@@ -169,7 +73,10 @@ template <typename T> queue<T>::queue( int capacity )
     this->tail     = 0;
 }
 
+// deconstructors
+template <typename T> stack<T>::~stack() {}
 template <typename T> queue<T>::~queue() {}
+
 /**
  * push
  * @brief Places pointer on the top of the stack
@@ -186,8 +93,8 @@ template <typename T> void stack<T>::push( T* inVal )
     if ( size <= nextItem )
     {
         delete inVal;
-        std::cout << "HIT" << std::endl;
-        // throw stackOverflow();
+        throw stackOverflow(
+            "[Stack Overflow] - cannot add item to filled stack" );
     }
     else
     {
@@ -210,7 +117,8 @@ template <typename T> T* stack<T>::pop()
 {
     if ( nextItem <= 0 )
     {
-        // throw stackUnderflow();
+        throw stackUnderflow(
+            "[Stack Underflow] - cannot remove item from empty stack" );
     }
     else
     {
@@ -233,7 +141,8 @@ template <typename T> T* stack<T>::top()
 {
     if ( nextItem <= 0 )
     {
-        // throw stackUnderflow();
+        throw stackUnderflow(
+            "[Stack Underflow] - no item to view, stack is empty" );
     }
     else
     {
@@ -313,7 +222,8 @@ template <typename T> void queue<T>::enqueue( T* inVal )
     if ( isFull() )
     {
         delete inVal;
-        // throw queueOverflow();
+        throw queueOverflow(
+            "[Queue Overflow] - cannot add item to filled queue" );
     }
     else
     {
@@ -337,7 +247,8 @@ template <typename T> T* queue<T>::dequeue()
 {
     if ( isEmpty() )
     {
-        // throw stackUnderflow();
+        throw stackUnderflow(
+            "[Queue Underflow] - cannot remove item from empty queue" );
     }
     else
     {
@@ -360,7 +271,8 @@ template <typename T> T* queue<T>::peek()
 {
     if ( isEmpty() )
     {
-        // throw stackUnderflow();
+        throw queueUnderflow(
+            "[Queue Underflow] - no item to view, queue is empty" );
     }
     else
     {

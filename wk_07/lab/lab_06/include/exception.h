@@ -1,50 +1,30 @@
 #pragma once
-#include "dataStructures.h"
+#include <string>
 
 class stackOverflow
 {
-private:
 public:
-    stackOverflow();
-    stackOverflow( stackOverflow&& )                 = default;
-    stackOverflow( const stackOverflow& )            = default;
-    stackOverflow& operator=( stackOverflow&& )      = default;
-    stackOverflow& operator=( const stackOverflow& ) = default;
-    ~stackOverflow();
+    stackOverflow( std::string msg ) { this->msg = msg; };
+    std::string msg;
 };
 
 class stackUnderflow
 {
-private:
 public:
-    stackUnderflow();
-    stackUnderflow( stackUnderflow&& )                 = default;
-    stackUnderflow( const stackUnderflow& )            = default;
-    stackUnderflow& operator=( stackUnderflow&& )      = default;
-    stackUnderflow& operator=( const stackUnderflow& ) = default;
-    ~stackUnderflow();
+    stackUnderflow( std::string msg ) { this->msg = msg; };
+    std::string msg;
 };
 
 class queueOverflow
 {
-private:
 public:
-    queueOverflow();
-    queueOverflow( queueOverflow&& )                 = default;
-    queueOverflow( const queueOverflow& )            = default;
-    queueOverflow& operator=( queueOverflow&& )      = default;
-    queueOverflow& operator=( const queueOverflow& ) = default;
-    ~queueOverflow();
+    queueOverflow( std::string msg ) { this->msg = msg; };
+    std::string msg;
 };
 
 class queueUnderflow
 {
-private:
 public:
-    queueUnderflow();
-    queueUnderflow( queueUnderflow&& )                 = default;
-    queueUnderflow( const queueUnderflow& )            = default;
-    queueUnderflow& operator=( queueUnderflow&& )      = default;
-    queueUnderflow& operator=( const queueUnderflow& ) = default;
-    ~queueUnderflow();
+    queueUnderflow( std::string msg ) { this->msg = msg; };
+    std::string msg;
 };
