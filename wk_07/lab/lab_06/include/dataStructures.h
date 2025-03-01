@@ -62,20 +62,26 @@ public: // defaults
 template <typename T> stack<T>::stack( int size )
 {
     this->size     = size;
-    this->items    = &items[ size ];
+    this->items    = new T*[ size ];
     this->nextItem = 0;
 }
 template <typename T> queue<T>::queue( int capacity )
 {
     this->capacity = capacity;
-    this->items    = &items[ capacity ];
+    this->items    = new T*[ capacity ];
     this->head     = 0;
     this->tail     = 0;
 }
 
 // deconstructors
-template <typename T> stack<T>::~stack() {}
-template <typename T> queue<T>::~queue() {}
+template <typename T> stack<T>::~stack() 
+{
+    delete[] this->items;
+}
+template <typename T> queue<T>::~queue() 
+{
+    delete[] this->items;
+}
 
 /**
  * push
@@ -171,11 +177,8 @@ template <typename T> int stack<T>::length() { return nextItem; }
  */
 template <typename T> void stack<T>::empty()
 {
-    while ( 0 <= nextItem )
-    {
-        delete items[ nextItem ];
-        nextItem--;
-    }
+    this->nextItem = 0;
+    this->~stack();
 }
 
 /**
@@ -258,7 +261,7 @@ template <typename T> T* queue<T>::dequeue()
 }
 
 /**
- * top
+ * peek
  * @brief Returns the pointer at head (relative first position) in the array
  * @return Item in the head position of the items array
  *
@@ -314,9 +317,8 @@ template <typename T> int queue<T>::size()
  */
 template <typename T> void queue<T>::empty()
 {
-    while ( !isEmpty() )
-    {
-        head = ( head + 1 ) % capacity;
-        delete items[ head ];
-    }
+    this->head=0;
+    this->tail=0;
+    this->~queue();
+
 }
