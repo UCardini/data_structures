@@ -5,8 +5,10 @@
 #include <string>
 
 std::string inputStream( bool );
-queue<std::string> reverseString( std::string, int);
-int countSpaces(std::string);
+std::string reverseWord( std::string );
+std::string reverseInput( std::string );
+std::string wordPunctuation( std::string );
+
 int main()
 {
     bool isFile = false;
@@ -26,16 +28,9 @@ int main()
         }
         std::cerr << "[ERROR] - Invalid entry!" << std::endl;
     }
-    std::string thangy=inputStream( isFile ); 
-    //std::cout<<thangy<<std::endl;
-
-    queue<std::string> final = reverseString(thangy, countSpaces(thangy)+1);
-    std::cout<<"HIT"<<std::endl;
-
-    while (!final.isEmpty())
-    {
-        std::cout<<*final.dequeue()<<std::endl;
-    }
+    std::string thangy = inputStream( isFile );
+    std::string Q      = reverseInput( thangy );
+    std::cout << Q << std::endl;
 
     return 0;
 }
@@ -73,58 +68,119 @@ std::string inputStream( bool fromFile )
     return inVal;
 }
 
-queue<std::string> reverseString(std::string inVal, int spaces) {
-    std::string none = "";
-    std::string* outVal= &none;
-    queue<std::string> F(spaces);
-    stack<char> M(inVal.length()); // Initialize stack with sufficient capacity
-    int T = 0; // Word length counter
-
-    for (int i = 0; i < inVal.length(); i++) {
-        if (inVal[i] != ' ') {
-            T++; // Increment word length counter
-        } else {
-            // Push characters of the current word onto the stack
-            for (int j = i - T; j < i; j++) {
-                M.push(&inVal[j]); // Push pointer to character
-            }
-
-            // Pop characters from the stack to reverse the word
-            while (M.length() > 0) {
-                outVal += *M.pop(); // Append popped character to outVal
-            }
-            F.enqueue(outVal);
-
-            T = 0; // Reset word length counter
+std::string reverseWord( std::string inVal )
+{
+    stack<char> S( inVal.length() );
+    for ( int i = 0; i < inVal.length(); i++ )
+    {
+        try
+        {
+            S.push( &inVal[ i ] );
+        }
+        catch ( stackOverflow e )
+        {
+            std::cout << e.msg << std::endl;
         }
     }
-
-    // Handle the last word (if any)
-    if (T > 0) {
-        // Push characters of the last word onto the stack
-        for (int j = inVal.length() - T; j < inVal.length(); j++) {
-            M.push(&inVal[j]); // Push pointer to character
+    queue<char> Q( inVal.length() + 1 );
+    std::string outVal;
+    for ( int i = 0; i < inVal.length(); i++ )
+    {
+        try
+        {
+            Q.enqueue( S.pop() );
         }
-
-        // Pop characters from the stack to reverse the word
-        while (M.length() > 0) {
-            outVal += *M.pop(); // Append popped character to outVal
+        catch ( stackUnderflow e )
+        {
+            std::cout << e.msg << std::endl;
         }
-        F.enqueue(outVal);
+        catch ( queueOverflow e )
+        {
+            std::cout << e.msg << std::endl;
+        }
     }
+    while ( !Q.isEmpty() )
+    {
+        char value = *Q.dequeue();
+        if ( value == '(' )
+        {
+            outVal += ')';
+        }
+        else if ( value == ')' )
+        {
+            outVal += '(';
+        }
+        else if ( value == '[' )
+        {
+            outVal += ']';
+        }
+        else if ( value == ']' )
+        {
+            outVal += '[';
+        }
+        else if ( value == '{' )
+        {
+            outVal += '}';
+        }
+        else if ( value == '}' )
+        {
+            outVal += '{';
+        }
+        else
+        {
+            outVal += value;
+        }
+    }
+    return wordPunctuation( outVal );
+};
 
-    return F;
+std::string reverseInput( std::string inVal )
+{
+    std::string outVal;
+    int length = inVal.length();
+    int k      = 0;
+    for ( int i = 0; i < length; i++ )
+    {
+        std::string word;
+        k++;
+        if ( inVal[ i ] == ' ' )
+        {
+            for ( int j = i + 1 - k; j + 1 < i + 1; j++ )
+            {
+                word += inVal[ j ];
+            }
+            outVal += reverseWord( word );
+            outVal += ' ';
+            k = 0;
+        }
+    }
+    if ( 0 < k )
+    {
+        k += 1;
+        std::string lastWord;
+        for ( int t = length - 1; length - k < t; t-- )
+        {
+            lastWord += inVal[ t ];
+        }
+        outVal += wordPunctuation( lastWord );
+    }
+    return outVal;
 }
 
-int countSpaces(std::string inVal)
+// Test case shows (This is a test. = sihT si a tset.)
+// which has altered punctuation
+std::string wordPunctuation( std::string inVal )
 {
-    int k = 0;
-    for(int i = 0; i < inVal.length(); i++)
+    std::string outVal;
+    if ( inVal[ 0 ] == '.' || inVal[ 0 ] == ',' || inVal[ 0 ] == '!' ||
+         inVal[ 0 ] == '?' || inVal[ 0 ] == ';' || inVal[ 0 ] == ':' )
     {
-        if (inVal[i] == ' ')
+        for ( int i = 1; i < inVal.length(); ++i )
         {
-            k++;
+            outVal += inVal[ i ];
         }
+        return outVal + inVal[ 0 ];
     }
-    return k;
+    outVal = inVal;
+    return outVal;
 }
