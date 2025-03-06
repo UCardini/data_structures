@@ -6,13 +6,18 @@
 class card // nodes for deck class
 {
 public:
-    int suit;
-    int value;
-    std::string face;
-    card* next;
+    int suit;         // Required
+    int value;        // Required
+    std::string face; // Not Required
+    card* next;       // Required
 
+    // constructor fills suit and value
+    // also fills the string face value of the card
+    // just so it looks nice.
     card( int suit, int value )
     {
+        this->next = nullptr;
+
         switch ( value )
         {
         case 1:
@@ -90,19 +95,28 @@ public:
             this->face += "Clubs";
             break;
         }
-
-        this->next = nullptr;
     };
 };
 
-class deck // operates similarly to a queue
-{          // player draws a card from the
+/* Works like a queue but using linked list
+ * have a head and a tail tracked inside this
+ * class instead of just the head for a linked
+ * list, not sure if this is required to make
+ * it work just yet I only included it just in
+ * case we do!
+ */
+class deck
+{
 private:
-    int cardsLeft;
+    int cardsLeft; // Not sure if required
     card* tail;
     card* head;
 
 public:
+    // needs broken up into simpler parts for readability
+    // Ideally a function to check for uniquiness could do this
+    // to make the initialization simpler because It's a little confusing right
+    // now
     deck() // when we construct our deck we need it to contain 52 random non
            // repeating "cards"
     {
@@ -120,6 +134,7 @@ public:
                 value    = rand() % 13 + 1;
 
                 // check if the card already in the deck
+                //  set isUnique to false it is
                 card* temp = head;
                 while ( temp != nullptr )
                 {
@@ -147,31 +162,35 @@ public:
             {
                 // next card is at the end of the list
                 tail->next = newCard;
-                tail       = newCard; // updates tail
+                tail       = newCard;
             }
         }
+    };
 
-        /*// Test cards are unique
+    void printLeftInDeck() // Test cards are unique
+    {
+        // Temporary for testing
         card* temp = head;
         while ( temp != nullptr )
         {
-            std::cout << temp->face << std::endl;
-            temp = temp->next;
+            std::cout << temp->face << std::endl; // print face value
+            temp = temp->next;                    // iterate temp head...
         }
-        */
     };
 
-    bool isEmpty() { return false; };
-    bool isFull();
-    void returnToDeck( card );
-    // card draw();
-    card peek();
-    int size();
+    bool isEmpty() // Needs implemented
+    {
+        // Temporary needs to be implemented
+        return false;
+    };
+    bool isFull();             // Needs implemented
+    void returnToDeck( card ); // Needs implemented
+    card peek();               // Needs implemented
+    int size();                // Needs implemented
     // void empty();
 
     std::string draw()
     {
-        // std::cout << "HIT" << std::endl;
         if ( this->isEmpty() )
         {
             // throw queueOverflow()
