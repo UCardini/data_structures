@@ -1,99 +1,67 @@
-// #include "classDef.h"
+#include "../include/classDef.h"
 
 #include <iostream>
 #include <string>
 int main()
 {
-    int value;
-    int suit;
-    std::string face;
+    //
+    deck p;
 
-    std::cout << "Enter value: ";
-    std::cin >> value;
-    std::cout << std::endl;
-    std::cout << "Enter suit: ";
-    std::cin >> suit;
-    std::cout << std::endl;
-
-    switch ( value )
-    {
-    case 1:
-        value = 1;
-        face  = "Ace";
-        break;
-    case 2:
-        value = 2;
-        face  = "Deuce";
-        break;
-    case 3:
-        value = 3;
-        face  = "Three";
-        break;
-    case 4:
-        value = 4;
-        face  = "Four";
-        break;
-    case 5:
-        value = 5;
-        face  = "Five";
-        break;
-    case 6:
-        value = 6;
-        face  = "Six";
-        break;
-    case 7:
-        value = 7;
-        face  = "Seven";
-        break;
-    case 8:
-        value = 8;
-        face  = "Eight";
-        break;
-    case 9:
-        value = 9;
-        face  = "Nine";
-        break;
-    case 10:
-        value = 10;
-        face  = "Ten";
-        break;
-    case 11:
-        value = 11;
-        face  = "Jack";
-        break;
-    case 12:
-        value = 12;
-        face  = "Queen";
-        break;
-    case 13:
-        value = 13;
-        face  = "King";
-        break;
-    }
-
-    face += " of ";
-
-    switch ( suit )
-    {
-    case 1:
-        suit = 1;
-        face += "Hearts";
-        break;
-    case 2:
-        suit = 2;
-        face += "Diamonds";
-        break;
-    case 3:
-        suit = 3;
-        face += "Spades";
-        break;
-    case 4:
-        suit = 4;
-        face += "Clubs";
-        break;
-    }
-
-    std::cout << face << std::endl;
-
+    // std::cout << p.draw() << std::endl;
+    //  std::cout << p.draw() << std::endl;
     return 0;
 }
+/*
+Ace of Spades
+Nine of Hearts
+Deuce of Spades
+King of Spades
+Nine of Spades
+Jack of Hearts
+King of Clubs
+Jack of Diamonds
+King of Hearts
+Four of Spades
+Ten of Hearts
+Four of Hearts
+Four of Diamonds
+Eight of Diamonds
+Ten of Clubs
+Three of Hearts
+Queen of Clubs
+Three of Spades
+Eight of Clubs
+Seven of Diamonds
+Ten of Spades
+Queen of Spades
+Seven of Clubs
+Deuce of Hearts
+Ten of Diamonds
+Six of Spades
+King of Diamonds
+Ace of Diamonds
+Queen of Hearts
+Eight of Spades
+Jack of Spades
+Ace of Clubs
+Eight of Hearts
+Seven of Hearts
+Five of Spades
+Queen of Diamonds
+Deuce of Clubs
+Five of Clubs
+Four of Clubs
+Three of Diamonds
+Nine of Clubs
+Six of Clubs
+Jack of Clubs
+Five of Hearts
+Six of Diamonds
+Deuce of Diamonds
+Seven of Spades
+Five of Diamonds
+Ace of Hearts
+Nine of Diamonds
+Six of Hearts
+Three of Clubs
+*/
