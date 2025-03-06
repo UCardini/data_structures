@@ -1,11 +1,21 @@
-#include "../include/classDef.h"
+#include "classDef.h"
 
 #include <iostream>
-#include <string>
+// #include <string>
 int main()
 {
     //
     deck p;
+
+    while ( !p.isEmpty() )
+    {
+        p.printLeftInDeck();
+        p.draw();
+        std::cout << std::endl;
+        std::cout << std::endl;
+        std::cout << std::endl;
+    }
+    p.isEmpty();
 
     // std::cout << p.draw() << std::endl;
     //  std::cout << p.draw() << std::endl;

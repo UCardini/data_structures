@@ -180,16 +180,27 @@ public:
 
     bool isEmpty() // Needs implemented
     {
-        // Temporary needs to be implemented
-        return false;
+        // std::cout << head->face << "==" << tail->face << std::endl;
+        return head->face == tail->face;
     };
-    bool isFull();             // Needs implemented
-    void returnToDeck( card ); // Needs implemented
-    card peek();               // Needs implemented
-    int size();                // Needs implemented
+    bool isFull() // Needs implemented
+    {
+        return tail->next == head;
+    };
+
+    void returnToDeck( card ) // Needs implemented
+        {
+
+        };
+    card peek() // Needs implemented
+    {
+
+    };
+
+    int size(); // Needs implemented
     // void empty();
 
-    std::string draw()
+    std::string draw() // needs to be card type
     {
         if ( this->isEmpty() )
         {
@@ -202,7 +213,7 @@ public:
         {
             tail = nullptr;
         }
-        return temp->face; // mem leak
+        return temp->face;
     }
 };
 
