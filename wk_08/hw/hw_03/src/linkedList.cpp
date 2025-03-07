@@ -1,5 +1,6 @@
 #pragma once
 #include "linkedList.h"
+#include "exception.h"
 #include <iostream>
 #include <string>
 
@@ -172,13 +173,6 @@ bool deck::isFull() // Needs implemented
 
 void deck::returnToDeck( card ) // Needs implemented
     {
-        /* Works like a queue but using linked list
-         * have a head and a tail tracked inside this
-         * class instead of just the head for a linked
-         * list, not sure if this is required to make
-         * it work just yet I only included it just in
-         * case we do!
-         */
 
     };
 
@@ -193,7 +187,7 @@ std::string deck::draw() // needs to be card type
 {
     if ( this->isEmpty() )
     {
-        // throw queueOverflow()
+        throw queueOverflow( "[EXCEPTION] - Queue Overflow!" );
     }
     card* temp = head;
     head       = head->next;
