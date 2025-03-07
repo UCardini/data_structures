@@ -173,20 +173,11 @@ bool deck::isFull()
     return cardsLeft == 52;
 };
 
-<<<<<<< HEAD
-void deck::returnToDeck( card ) // Needs implemented
-    {
-
-    };
-
-card deck::peek() // Needs implemented
-=======
-void deck::returnToDeck( card inVal )
->>>>>>> bf0260dbb9b2ebd47269d57f87a0ccd458baec4b
+void deck::returnToDeck( card* inVal )
 {
     cardsLeft++;
-    this->tail->next = &inVal; 
-    this->tail       = &inVal;
+    this->tail->next = inVal;
+    this->tail       = inVal;
 };
 
 card deck::peek()
@@ -199,7 +190,7 @@ int deck::size()
     return cardsLeft;
 };
 
-card deck::draw() // needs to be card type
+card* deck::draw() // needs to be card type
 // change to regular card
 {
     if ( this->isEmpty() )
@@ -207,9 +198,9 @@ card deck::draw() // needs to be card type
         throw queueOverflow( "[EXCEPTION] - Queue Overflow!" );
     }
 
-    card temp = card( head->suit, head->value ); 
-    delete head;
+    card* temp = head;
     head       = head->next;
+    temp->next = nullptr;
     cardsLeft--;
     return temp;
 };

@@ -10,8 +10,8 @@ int main()
     std::cout << std::endl;
     std::cout << std::endl;
 
-    card n = p.draw();
-    std::cout << "Card: " << n.face << " removed from deck, size: " << p.size()
+    card* n = p.draw();
+    std::cout << "Card: " << n->face << " removed from deck, size: " << p.size()
               << std::endl;
     p.printLeftInDeck();
 
@@ -19,7 +19,7 @@ int main()
     std::cout << std::endl;
     std::cout << std::endl;
     p.returnToDeck( n );
-    std::cout << "Card: " << n.face << " returned to deck, size: " << p.size()
+    std::cout << "Card: " << n->face << " returned to deck, size: " << p.size()
               << std::endl;
     p.printLeftInDeck();
 

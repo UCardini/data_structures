@@ -27,8 +27,8 @@ public:
     void printLeftInDeck();
     bool isEmpty();
     bool isFull();
-    void returnToDeck( card );
+    void returnToDeck( card* );
     card peek();
     int size();
-    card draw();
+    card* draw();
 };
