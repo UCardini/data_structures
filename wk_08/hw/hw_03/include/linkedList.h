@@ -12,7 +12,9 @@ public:
     card( int, int );
 };
 
-class deck
+class deck // create player class that inherits deck class
+           // can draw cards and has its own hand that it draws
+           // from the deck class and can return to the deck class
 {
 private:
     int cardsLeft; // Not sure if required
@@ -25,8 +27,8 @@ public:
     void printLeftInDeck();
     bool isEmpty();
     bool isFull();
-    void returnToDeck( card );
+    void returnToDeck( card* );
     card peek();
     int size();
-    std::string draw();
+    card* draw();
 };

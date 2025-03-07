@@ -101,7 +101,8 @@ card::card( int suit, int value )
 deck::deck() // when we construct our deck we need it to contain 52 random non
              // repeating "cards"
 {
-    head = nullptr;
+    head      = nullptr;
+    cardsLeft = 0;
     srand( time( 0 ) );
     for ( int i = 0; i < 52; i++ )
     {
@@ -132,6 +133,8 @@ deck::deck() // when we construct our deck we need it to contain 52 random non
         }
 
         // add the unique card to the deck
+        cardsLeft++;
+        // std::cout << cardsLeft << std::endl;
         card* newCard = new card( suit, value );
         if ( head == nullptr )
         {
@@ -159,48 +162,55 @@ void deck::printLeftInDeck() // Test cards are unique
     }
 };
 
-bool deck::isEmpty() // Needs implemented
-{
-    // std::cout << head->face << "==" << tail->face << std::endl;
-    return head->face == tail->face;
+bool deck::isEmpty()
+{ //
+    return cardsLeft == 0;
 };
 
-bool deck::isFull() // Needs implemented
-{
-    return tail->next == head;
+bool deck::isFull()
+{ //
+    return cardsLeft == 52;
 };
 
-void deck::returnToDeck( card ) // Needs implemented
-    {
-        /* Works like a queue but using linked list
-         * have a head and a tail tracked inside this
-         * class instead of just the head for a linked
-         * list, not sure if this is required to make
-         * it work just yet I only included it just in
-         * case we do!
-         */
-
-    };
-
-card deck::peek() // Needs implemented
+void deck::returnToDeck( card* inVal )
 {
+    // needs to take in not ptr
+    // change to create new card at tail->next
+    cardsLeft++;
+    this->tail->next = inVal;
+    this->tail       = inVal;
+
+    /* Works like a queue but using linked list
+     * have a head and a tail tracked inside this
+     * class instead of just the head for a linked
+     * list, not sure if this is required to make
+     * it work just yet I only included it just in
+     * case we do!
+     */
+};
+
+card deck::peek()
+{ //
     return *tail;
 };
 
-int deck::size() { return 0; }; // Needs implemented
+int deck::size()
+{ //
+    return cardsLeft;
+};
 
-std::string deck::draw() // needs to be card type
+card* deck::draw() // needs to be card type
+// change to regular card
 {
     if ( this->isEmpty() )
     {
         // throw queueOverflow()
     }
+
     card* temp = head;
     head       = head->next;
-
-    if ( head == nullptr )
-    {
-        tail = nullptr;
-    }
-    return temp->face;
+    // delete temp;
+    temp = new card( temp->suit, temp->value ); // memory leak?
+    cardsLeft--;
+    return temp;
 };
