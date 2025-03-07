@@ -172,21 +172,11 @@ bool deck::isFull()
     return cardsLeft == 52;
 };
 
-void deck::returnToDeck( card* inVal )
+void deck::returnToDeck( card inVal )
 {
-    // needs to take in not ptr
-    // change to create new card at tail->next
     cardsLeft++;
-    this->tail->next = inVal;
-    this->tail       = inVal;
-
-    /* Works like a queue but using linked list
-     * have a head and a tail tracked inside this
-     * class instead of just the head for a linked
-     * list, not sure if this is required to make
-     * it work just yet I only included it just in
-     * case we do!
-     */
+    this->tail->next = &inVal; 
+    this->tail       = &inVal;
 };
 
 card deck::peek()
@@ -199,7 +189,7 @@ int deck::size()
     return cardsLeft;
 };
 
-card* deck::draw() // needs to be card type
+card deck::draw() // needs to be card type
 // change to regular card
 {
     if ( this->isEmpty() )
@@ -207,10 +197,9 @@ card* deck::draw() // needs to be card type
         // throw queueOverflow()
     }
 
-    card* temp = head;
+    card temp = card( head->suit, head->value ); 
+    delete head;
     head       = head->next;
-    // delete temp;
-    temp = new card( temp->suit, temp->value ); // memory leak?
     cardsLeft--;
     return temp;
 };
