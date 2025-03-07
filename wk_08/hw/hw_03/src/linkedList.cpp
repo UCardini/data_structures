@@ -102,7 +102,8 @@ card::card( int suit, int value )
 deck::deck() // when we construct our deck we need it to contain 52 random non
              // repeating "cards"
 {
-    head = nullptr;
+    head      = nullptr;
+    cardsLeft = 0;
     srand( time( 0 ) );
     for ( int i = 0; i < 52; i++ )
     {
@@ -133,6 +134,8 @@ deck::deck() // when we construct our deck we need it to contain 52 random non
         }
 
         // add the unique card to the deck
+        cardsLeft++;
+        // std::cout << cardsLeft << std::endl;
         card* newCard = new card( suit, value );
         if ( head == nullptr )
         {
@@ -160,41 +163,53 @@ void deck::printLeftInDeck() // Test cards are unique
     }
 };
 
-bool deck::isEmpty() // Needs implemented
-{
-    // std::cout << head->face << "==" << tail->face << std::endl;
-    return head->face == tail->face;
+bool deck::isEmpty()
+{ //
+    return cardsLeft == 0;
 };
 
-bool deck::isFull() // Needs implemented
-{
-    return tail->next == head;
+bool deck::isFull()
+{ //
+    return cardsLeft == 52;
 };
 
+<<<<<<< HEAD
 void deck::returnToDeck( card ) // Needs implemented
     {
 
     };
 
 card deck::peek() // Needs implemented
+=======
+void deck::returnToDeck( card inVal )
+>>>>>>> bf0260dbb9b2ebd47269d57f87a0ccd458baec4b
 {
+    cardsLeft++;
+    this->tail->next = &inVal; 
+    this->tail       = &inVal;
+};
+
+card deck::peek()
+{ //
     return *tail;
 };
 
-int deck::size() { return 0; }; // Needs implemented
+int deck::size()
+{ //
+    return cardsLeft;
+};
 
-std::string deck::draw() // needs to be card type
+card deck::draw() // needs to be card type
+// change to regular card
 {
     if ( this->isEmpty() )
     {
         throw queueOverflow( "[EXCEPTION] - Queue Overflow!" );
     }
-    card* temp = head;
-    head       = head->next;
 
-    if ( head == nullptr )
-    {
-        tail = nullptr;
-    }
-    return temp->face;
+    card temp = card( head->suit, head->value ); 
+    delete head;
+    head       = head->next;
+    cardsLeft--;
+    return temp;
 };
