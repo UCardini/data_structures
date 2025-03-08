@@ -1,9 +1,24 @@
+#pragma once
 #include <string>
 class queueOverflow
 {
-private:
+public:
     std::string msg;
 
-public:
     queueOverflow( std::string msg ) { this->msg = msg; };
+};
+
+class stackOverflow
+{
+public:
+    std::string msg;
+
+    stackOverflow( std::string msg ) { this->msg = msg; };
+};
+class stackUnderflow
+{
+public:
+    std::string msg;
+
+    stackUnderflow( std::string msg ) { this->msg = msg; };
 };

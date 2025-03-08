@@ -1,4 +1,3 @@
-#pragma once
 #include "linkedList.h"
 #include "exception.h"
 #include <iostream>
