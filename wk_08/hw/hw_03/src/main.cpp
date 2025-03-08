@@ -1,10 +1,12 @@
-#include "linkedList.h"
+#include "deck.h"
+#include "exception.h"
+#include "player.h"
 #include <iostream>
 
 int main()
 {
-    deck p;
 
+    /*
     p.printLeftInDeck();
     std::cout << std::endl;
     std::cout << std::endl;
@@ -22,6 +24,7 @@ int main()
     std::cout << "Card: " << n->face << " returned to deck, size: " << p.size()
               << std::endl;
     p.printLeftInDeck();
+    */
 
     // while ( !p.isEmpty() )
     // {
@@ -32,6 +35,31 @@ int main()
     //     std::cout << std::endl;
     // }
     // p.isEmpty();
+
+    deck p;
+    card x;
+    sidePile pyle;
+    try
+    {
+        pyle.push( p.draw() );
+        pyle.push( p.draw() );
+        pyle.push( p.draw() );
+        pyle.push( p.draw() );
+        pyle.push( p.draw() );
+
+        std::cout << pyle.display( pyle.pop() ) << std::endl;
+        std::cout << pyle.display( pyle.pop() ) << std::endl;
+        std::cout << pyle.display( pyle.pop() ) << std::endl;
+        std::cout << pyle.display( pyle.pop() ) << std::endl;
+    }
+    catch ( stackOverflow e )
+    {
+        std::cout << e.msg << std::endl;
+    }
+    catch ( stackUnderflow e )
+    {
+        std::cout << e.msg << std::endl;
+    }
 
     return 0;
 }
