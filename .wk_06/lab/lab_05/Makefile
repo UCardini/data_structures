@@ -1,5 +1,5 @@
 CXX = clang++
-CXXFLAGS = --debug -Wall -g -Iinclude
+CXXFLAGS = -Wall -g -Iinclude
 
 OBJ := obj
 BIN := bin
@@ -11,6 +11,7 @@ OBJS = $(patsubst $(SRC)/%.cpp, $(OBJ)/%.o, $(SRCS))
 TARGET = $(BIN)/main
 
 # for clangd
+
 all: $(TARGET)
 	@./$(TARGET)
 
@@ -26,6 +27,11 @@ $(OBJ)/%.o: $(SRC)/%.cpp
 clean:
 	@rm -rf $(OBJ) $(BIN) compile_commands.json .cache
 
+clang:
+	@if [ ! -f compile_commands.json ]; then \
+		bear -- make clean all; \
+	fi
+	@make all
 rebuild: clean all
 
 .PHONY: all clean rebuild clang
