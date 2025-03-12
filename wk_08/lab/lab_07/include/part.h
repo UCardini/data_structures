@@ -13,9 +13,9 @@ private:
 
 public:
     part();
-
     part( int, std::string, double, std::string, int );
     std::string getPartInfo();
+
     double getPrice();
     bool inStock();
     bool available( int );

@@ -16,16 +16,16 @@ private:
 
 public:
     doubleLinkedList( T* );
-    ~doubleLinkedList();
     void addItem( T* );
-    void reset();
     T getItem( T );
+    bool isInList( T );
+    bool isEmpty();
     T seeNext();
     T seePrev();
     T seeAt( int );
+    void reset();
+    ~doubleLinkedList();
     int size();
-    bool isInList( T );
-    bool isEmpty();
 
     bool operator>( T );
     bool operator==( T );
