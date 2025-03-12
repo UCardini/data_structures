@@ -2,13 +2,13 @@
 #include <iostream>
 #include <string>
 
-template <typename T> class aids
+template <typename T> class node
 {
 public:
     T data;
-    aids* next;
-    aids* previous;
-    aids( T data )
+    node* next;
+    node* previous;
+    node( T data )
     {
         this->data     = data;
         this->next     = nullptr;
@@ -16,19 +16,19 @@ public:
     }
 };
 
-class booger
+class stock
 {
 private:
     int SKU; // – stock keeping number
     std::string description;
     double price;
-    std::string
-        UOM; //- Unit of measure (is it sold by the foot, pound, each, etc…)
+    std::string UOM;
+    //- Unit of measure (is it sold by the foot, pound, each, etc…)
     int quantityOnHand = 0;
     int leadTime; //(number of days it takes to order if there aren’t any on
                   // hand to sell)
 public:
-    booger()
+    stock()
     {
         this->SKU            = 0;
         this->description    = "";
@@ -37,8 +37,8 @@ public:
         this->quantityOnHand = 0;
     };
 
-    booger( int SKU, std::string description, double price, std::string UOM,
-            int quantityOnHand )
+    stock( int SKU, std::string description, double price, std::string UOM,
+           int quantityOnHand )
     {
         this->SKU            = SKU;
         this->description    = description;
@@ -77,24 +77,23 @@ public:
         }
     };
 
-    bool operator>( booger );
-    bool operator==( booger );
-    bool operator<( booger );
+    bool operator>( stock );
+    bool operator==( stock );
+    bool operator<( stock );
 };
 
 // overloaded Comparisons
-bool booger::operator<( booger right ) { return SKU < right.SKU; }
-bool booger::operator>( booger right ) { return SKU > right.SKU; }
-bool booger::operator==( booger right ) { return SKU == right.SKU; }
+bool stock::operator<( stock right ) { return SKU < right.SKU; }
+bool stock::operator>( stock right ) { return SKU > right.SKU; }
+bool stock::operator==( stock right ) { return SKU == right.SKU; }
 
-template <typename T> class mrBeastHasCrones
+template <typename T> class doubleLinkedList
 {
 private:
     T* head;
 
 public:
-    mrBeastHasCrones( T* head ) { this->head = head; };
-    //~doubleLinkedList();
+    doubleLinkedList( T* head ) { this->head = head; };
 
     void addItem( T* current );
     void reset();
