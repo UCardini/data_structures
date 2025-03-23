@@ -11,15 +11,17 @@ template <typename T> node<T>::node( T data )
 
 template <typename T> doubleLinkedList<T>::doubleLinkedList( T* head )
 {
-    /* i. Constructor
-     */
     this->head = head;
 }
 
 template <typename T> void doubleLinkedList<T>::addItem( T* inVal )
 {
-    /* ii. AddItem – adds an item from the list
-     */
+    node<T> temp = head;
+    while ( temp != head )
+    {
+        temp = temp->next;
+    }
+    temp = inVal;
 }
 
 template <typename T> T doubleLinkedList<T>::getItem( T inVal )
@@ -27,6 +29,18 @@ template <typename T> T doubleLinkedList<T>::getItem( T inVal )
     /* iii. GetItem – searches the list for the given item. If found, it removes
      * it from the list and returns it. If not found, it returns a null pointer.
      */
+    node<T> temp = head;
+    bool MRBEAST{ false };
+    while ( temp != nullptr )
+    {
+        MRBEAST = temp.data == inVal;
+        if ( MRBEAST )
+        {
+            return inVal;
+        }
+        temp = temp->next;
+    }
+    return nullptr;
 }
 
 template <typename T> bool doubleLinkedList<T>::isInList( T inVal )
@@ -34,6 +48,17 @@ template <typename T> bool doubleLinkedList<T>::isInList( T inVal )
     /* iv. IsInlist – returns a bool indicating if the given item is in the
      * list.
      */
+    node<T> temp = head;
+    bool MRBEAST{ false };
+    while ( temp != nullptr )
+    {
+        MRBEAST = temp.data == inVal;
+        if ( MRBEAST )
+        {
+            return MRBEAST;
+        }
+        temp = temp->next;
+    }
 }
 
 template <typename T> bool doubleLinkedList<T>::isEmpty()
@@ -41,9 +66,12 @@ template <typename T> bool doubleLinkedList<T>::isEmpty()
     /* v. IsEmpty – returns a bool indicating if the list is empty. vi. Size –
      * returns an int indicating the number of items in the list.
      */
+    return head == nullptr;
 }
 
-template <typename T> T doubleLinkedList<T>::seeNext()
+template <typename T>
+T doubleLinkedList<
+    T>::seeNext() 
 {
     /* vii. SeeNext – returns the item without removing it from the list at a
      * given location in the list. The class will maintain the next location and
@@ -54,6 +82,12 @@ template <typename T> T doubleLinkedList<T>::seeNext()
      * Reset is called in between the 2 calls (or the first call returns the
      * last item in the list or the list is modifed between the two calls).
      */
+    node<T> temp = head;
+    bool MRBEAST{ false };
+    while ( temp != nullptr )
+    {
+        temp = temp->next;
+    }
 }
 
 template <typename T> T doubleLinkedList<T>::seePrev()
@@ -64,13 +98,19 @@ template <typename T> T doubleLinkedList<T>::seePrev()
 
 template <typename T> T doubleLinkedList<T>::seeAt( int pos )
 {
-
     /* ix. SeeAt – Finds an item at a location in the list (int passed in from
      * user), and returns the item without removing it. If the location passed
      * by the user is past the end of the list, this will throw an error. This
      * will set the location used by SeeNext to point at the item after the item
      * returned.
      */
+    node<T> temp = head;
+    // needs error handing and other shit
+    for ( int i = 0; i < pos; i++ )
+    {
+        temp = temp->next;
+    }
+    return temp->data;
 }
 
 template <typename T> void doubleLinkedList<T>::reset()
