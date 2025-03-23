@@ -1,5 +1,6 @@
 #include "player.h"
 #include "exception.h"
+
 #include <string>
 
 sidePile::sidePile() { this->top = 0; }
@@ -27,3 +28,8 @@ card* sidePile::pop()
 }
 
 int sidePile::remaining() { return this->size - this->top; }
+
+player::player(deck hand) 
+{
+    this->hand = hand;
+}

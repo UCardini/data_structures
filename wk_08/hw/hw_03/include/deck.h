@@ -23,12 +23,15 @@ private:
 
 public:
     deck();
+    deck(deck*);
+    deck(card*, card*);
 
     void printLeftInDeck();
-    bool isEmpty();
+    bool isEmpty(){return cardsLeft == 0;};
     bool isFull();
     void returnToDeck( card* );
-    card peek();
+    card peek(){return *tail;};
     int size();
     card* draw();
+    deck* split();
 };

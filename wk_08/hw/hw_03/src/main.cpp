@@ -2,64 +2,31 @@
 #include "exception.h"
 #include "player.h"
 #include <iostream>
+#include <string>
 
 int main()
 {
+    deck p; 
+    deck s(p.split());
+    player p1(p);
+    player p2(s);
 
-    /*
-    p.printLeftInDeck();
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
 
-    card* n = p.draw();
-    std::cout << "Card: " << n->face << " removed from deck, size: " << p.size()
-              << std::endl;
-    p.printLeftInDeck();
+    p1.hand.printLeftInDeck();
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    p2.hand.printLeftInDeck();
 
-    std::cout << std::endl;
-    std::cout << std::endl;
-    std::cout << std::endl;
-    p.returnToDeck( n );
-    std::cout << "Card: " << n->face << " returned to deck, size: " << p.size()
-              << std::endl;
-    p.printLeftInDeck();
-    */
+    std::cout<<std::endl;
+    std::cout<<std::endl;
+    std::cout<<std::endl;
 
-    // while ( !p.isEmpty() )
-    // {
-    //     p.printLeftInDeck();
-    //     p.draw();
-    //     std::cout << std::endl;
-    //     std::cout << std::endl;
-    //     std::cout << std::endl;
-    // }
-    // p.isEmpty();
+    std::string f1 = p1.hand.peek().face;
+    std::string f2 = p2.hand.peek().face;
 
-    deck p;
-    card x;
-    sidePile pyle;
-    try
-    {
-        pyle.push( p.draw() );
-        pyle.push( p.draw() );
-        pyle.push( p.draw() );
-        pyle.push( p.draw() );
-        pyle.push( p.draw() );
+    std::cout<<"face value for card1: "<<f1<<std::endl;
 
-        std::cout << pyle.display( pyle.pop() ) << std::endl;
-        std::cout << pyle.display( pyle.pop() ) << std::endl;
-        std::cout << pyle.display( pyle.pop() ) << std::endl;
-        std::cout << pyle.display( pyle.pop() ) << std::endl;
-    }
-    catch ( stackOverflow e )
-    {
-        std::cout << e.msg << std::endl;
-    }
-    catch ( stackUnderflow e )
-    {
-        std::cout << e.msg << std::endl;
-    }
-
+    std::cout<<"face value for card2: "<<f2<<std::endl;
     return 0;
 }

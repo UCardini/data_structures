@@ -15,10 +15,9 @@ public:
     int remaining();
 };
 
-// Needs to initialize to a split deck from the deck class
-// 26 cards needs functionality like our deck class
 class player
 {
-private:
 public:
+    deck hand;
+    player(deck);
 };
