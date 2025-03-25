@@ -22,7 +22,8 @@ part::part( int SKU, std::string description, double price, std::string UOM,
 std::string part::getPartInfo()
 {
     //
-    return std::to_string( SKU ) + this->description;
+    return "SKU: " + std::to_string( SKU ) +
+           ", Description: " + this->description;
 }
 
 double part::getPrice()
