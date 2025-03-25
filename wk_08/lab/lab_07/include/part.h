@@ -23,4 +23,6 @@ public:
     bool operator>( part );
     bool operator==( part );
     bool operator<( part );
+
+    void display();
 };

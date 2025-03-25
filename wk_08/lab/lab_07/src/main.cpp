@@ -20,6 +20,8 @@ int main()
 
         else if ( selection == "2" )
         {
+            // only requires SKU
+            // need to fix
             std::cout << "Enter a part to get from linked list!" << std::endl;
 
             part p             = newPart();
@@ -27,6 +29,8 @@ int main()
         }
         else if ( selection == "3" )
         {
+            // only requires SKU
+            // need to fix
             std::cout << "Enter a part to check if it in linked list!"
                       << std::endl;
 
