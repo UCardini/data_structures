@@ -15,11 +15,11 @@ public:
 
 template <typename T> class tree
 {
-private:
+public:
     node<T>* root; // Should be ptr?
 
-public:
     tree() { root = nullptr; };
+
     void insert( T inVal )
     {
         node<T>* temp = root;
@@ -30,7 +30,7 @@ public:
         else
         {
             while ( ( inVal < temp->data && temp->left != nullptr ) ||
-                    ( inVal < temp->data && temp->left != nullptr ) )
+                    ( inVal >= temp->data && temp->right != nullptr ) )
             {
                 if ( inVal < temp->data )
                 {
@@ -54,6 +54,23 @@ public:
     };
 
     void print() { print( root ); };
+
+    bool find( node<T>* place, T inVal )
+    {
+        if ( place == nullptr )
+        {
+            return false;
+        }
+        if ( place->data == inVal )
+        {
+            return true;
+        }
+        if ( find( place->left, inVal ) )
+        {
+            return true;
+        }
+        return find( place->right, inVal );
+    };
 
 private:
     void print( node<T>* place ) //
@@ -232,6 +249,10 @@ int main()
     myTree.insert( 0 );
 
     myTree.print();
+    if ( myTree.find( myTree.root, 15 ) )
+    {
+        std::cout << "works!";
+    }
     std::cout << std::endl;
     return 0;
 }
