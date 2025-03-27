@@ -148,7 +148,7 @@ int main()
                         // since the player pushed onto sidepile, must play
                         // from deck
                         cardPlayfromDeck = p1.hand.draw();
-                        enemyPlayCard    = p2.hand.draw();
+                        //enemyPlayCard    = p2.hand.draw();
                         if ( cardPlayfromDeck->value > enemyPlayCard->value )
                         {
                             std::cout
