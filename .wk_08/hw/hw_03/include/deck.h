@@ -9,6 +9,7 @@ public:
     std::string face; // Not Required
     card* next;       // Required
 
+    card() = default;
     card( int, int );
 };
 

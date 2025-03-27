@@ -6,6 +6,7 @@
 sidePile::sidePile() { this->top = 0; }
 
 std::string sidePile::display( card* inVal ) { return inVal->face; }
+
 void sidePile::push( card* inVal )
 {
     if ( top >= this->size )
@@ -27,9 +28,6 @@ card* sidePile::pop()
     return stack[ top ];
 }
 
-int sidePile::remaining() { return this->size - this->top; }
+int sidePile::remaining() { return this->top; }
 
-player::player(deck hand) 
-{
-    this->hand = hand;
-}
+player::player( deck hand ) { this->hand = hand; }

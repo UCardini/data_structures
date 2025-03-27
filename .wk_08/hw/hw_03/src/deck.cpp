@@ -54,18 +54,17 @@ deck::deck()
     }
 };
 
-deck::deck(deck* playerDeck)
+deck::deck( deck* playerDeck )
 {
-    this->head = playerDeck->head;
-    this->tail = playerDeck->tail;
+    this->head      = playerDeck->head;
+    this->tail      = playerDeck->tail;
     this->cardsLeft = 26;
-
 };
 
-deck::deck(card* newHead, card* newTail)
+deck::deck( card* newHead, card* newTail )
 {
-    this->head = newHead;
-    this->tail = newTail;
+    this->head      = newHead;
+    this->tail      = newTail;
     this->cardsLeft = 26;
 }
 
@@ -100,18 +99,32 @@ card* deck::draw()
     return temp;
 }
 
+int deck::size()
+{
+    card* temp      = this->head;
+    this->cardsLeft = 0;
+    while ( temp != NULL )
+    {
+        this->cardsLeft++;
+
+        temp = temp->next;
+    }
+    return this->cardsLeft;
+}
+
 deck* deck::split()
 {
     card* temp = head;
-    for(int i=0; i<25; i++)
+    for ( int i = 0; i < 25; i++ )
     {
         temp = temp->next;
     }
-    deck* created = new deck(temp->next, tail);
-    tail = temp;
-    tail->next = nullptr;
+    deck* created = new deck( temp->next, tail );
+    tail          = temp;
+    tail->next    = nullptr;
     return created;
 }
+
 
 // constructor fills suit and value
 // also fills the string face value of the card
