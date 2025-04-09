@@ -1,5 +1,5 @@
-CXX = clang++
-CXXFLAGS = -Wall -g -Iinclude
+CXX = g++
+CXXFLAGS = -Iinc -Wall -g
 
 OBJ := obj
 BIN := bin
@@ -18,7 +18,6 @@ all: $(TARGET)
 $(TARGET): $(OBJS)
 	@mkdir -p $(BIN)
 	@$(CXX) $(CXXFLAGS) -o $(TARGET) $(OBJS)
-
 
 $(OBJ)/%.o: $(SRC)/%.cpp
 	@mkdir -p $(OBJ)
